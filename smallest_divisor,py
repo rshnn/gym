@@ -1,0 +1,60 @@
+class Solution(object):
+    def smallestDivisor(self, nums, threshold):
+        """
+        :type nums: List[int]
+        :type threshold: int
+        :rtype: int
+        """
+
+        current_sum = 0
+        divisor = max(nums)  
+        last_divisor = divisor
+
+        while True:  
+
+            current_sum = self.calc_sum(nums, divisor) 
+            print("Current sum: ", current_sum)
+
+            if current_sum > threshold: 
+                print("Sum too big for this divisor {}".format(divisor))
+                break 
+
+            last_divisor = divisor   
+            divisor -= 1
+            
+            if divisor == 0: 
+                break 
+
+          
+        return last_divisor
+    
+
+    def ceiling(self, num, divisor): 
+        val = num / divisor 
+        
+        if num - val*divisor > 0: 
+            val += 1
+            
+        return val 
+
+    
+
+    def calc_sum(self, nums, divisor): 
+
+        total = 0 
+        for num in nums: 
+            
+            s = self.ceiling(num, divisor)
+            total += s  
+            print("Calc... {} / {} = {} \t".format(num, divisor, s))
+
+        return total  
+
+
+
+
+if __name__ == '__main__':
+    
+    sol = Solution()
+    ans = sol.smallestDivisor(nums=[1, 2, 3], threshold=6)
+    print(ans)
