@@ -1,0 +1,18 @@
+def make_bricks(small, big, goal):
+  
+  if goal == 0: 
+    return True 
+  
+  leftover = goal 
+  while leftover >= 5 and big > 0: 
+    leftover = leftover - 5
+    big = big - 1 
+  
+  while leftover > 0 and small > 0: 
+    leftover = leftover - 1 
+    small = small - 1
+  
+  if leftover == 0 and big == 0 and small == 0: 
+    return True
+  else:  
+    return False 
